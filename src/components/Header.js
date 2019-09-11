@@ -1,15 +1,23 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
+const Total = props => {
+  console.log("total props", props);
 
-const Header = props => {
   return (
-    <>
-      <figure className="image is-128x128">
-        <img src={props.car.image} alt={props.car.name} />
-      </figure>
-      <h2>{props.car.name}</h2>
-      <p>Amount: ${props.car.price}</p>
-    </>
+    <div className="content">
+      <h4>Total Amount: ${props.car.price + props.additionalPrice}</h4>
+    </div>
   );
 };
 
-export default Header;
+const mapStateToProps = state => {
+  return {
+    car: state.car,
+    additionalPrice: state.additionalPrice
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Total);
